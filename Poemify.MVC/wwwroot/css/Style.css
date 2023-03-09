@@ -1,0 +1,15 @@
+﻿
+.cursor-pointer : hover{
+    cursor : pointer;
+    
+}
+footer{
+    margin-top : 45vh;
+    overflow :hidden;
+}
+body{
+    overflow : hidden;
+}
+#red{
+    color: red;
+}
