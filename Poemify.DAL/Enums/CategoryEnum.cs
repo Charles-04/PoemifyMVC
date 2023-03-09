@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace Poemify.DAL.Enums
 {
-	internal class CategoryEnum
+	public enum Category
 	{
+		Sad,
+		Life,
+		Love,
+		Friendship,
+
 	}
 }
