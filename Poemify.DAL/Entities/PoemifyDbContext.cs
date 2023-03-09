@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,14 @@ using System.Threading.Tasks;
 
 namespace Poemify.DAL.Entities
 {
-    internal class PoemifyDbContext
+    public class PoemifyDbContext : DbContext
     {
-        public static IEnumerable<User> GetUsersWithPoems()
+        public PoemifyDbContext(DbContextOptions<PoemifyDbContext> options):base(options)
+        {
+
+        }
+
+       /* public static IEnumerable<User> GetUsersWithPoems()
         {
             return new List<User>() {
              new User{
@@ -46,7 +52,7 @@ To my soul of gloom
                                                            ~ C.Charles C C
 "
 
-					 },
+                     },
                       new Poem
                      {
                          Id = 2,
@@ -75,21 +81,21 @@ A priceless treasure, unappreciated
                                         ~ C.Charles C C
 "
 
-					 },
+                     },
 
                  }
              },
-			new User{
-				 FullName = "Cee Cee Cee",
-				 Email = "CeeCee@mail.com",
-				 Password= "P@ssw0rd",
-				 Poems = new List<Poem> ()
-				 {
-					 new Poem
-					 {
-						 Id = 1,
-						 Name = "Farewell?",
-						 Body = @"
+            new User{
+                 FullName = "Cee Cee Cee",
+                 Email = "CeeCee@mail.com",
+                 Password= "P@ssw0rd",
+                 Poems = new List<Poem> ()
+                 {
+                     new Poem
+                     {
+                         Id = 1,
+                         Name = "Farewell?",
+                         Body = @"
 The nights turned to days
 The connection had strains
 Our hearts' symphony
@@ -109,11 +115,11 @@ Isn't far from a reality
 
                                                        ~C.Charles C C"
 
-					 },
-					  new Poem
-					 {
-						 Id = 1,
-						 Name = "Te Amor",
+                     },
+                      new Poem
+                     {
+                         Id = 1,
+                         Name = "Te Amor",
                          Body = @"
 Some people stay for a while, others forever
 Every day, I pray you're the latter 
@@ -144,11 +150,11 @@ Makes the stars jealous
                                                    ~C.Charles C C
 "
 
-					 },
+                     },
 
-				 }
-			 }
-			};
-        }
+                 }
+             }
+            };
+        }*/
     }
 }

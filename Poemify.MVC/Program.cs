@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using Poemify.DAL.Entities;
+
 namespace Poemify.MVC
 {
     public class Program
@@ -8,6 +11,8 @@ namespace Poemify.MVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<PoemifyDbContext>(options => options.UseSqlServer(
+                builder.Configuration.GetConnectionString("DefaultConnection")));
 
             var app = builder.Build();
 
