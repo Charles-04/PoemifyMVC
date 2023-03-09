@@ -13,7 +13,23 @@ namespace Poemify.DAL.Entities
         {
 
         }
-
+        DbSet<User> Users { get; set; }
+        DbSet<Poem> Poems { get; set; }
+        
+      protected override void OnModelCreating(ModelBuilder model)
+        {
+            model.Entity<User>()
+                .Property(p => p.FullName)
+                .HasMaxLength(50)
+                .IsRequired();
+            model.Entity<User>()
+                .Property(p => p.Email)
+                .IsRequired();
+            model.Entity<Poem>()
+                .Property(p => p.Category)
+                .IsRequired(false);
+			
+		}
        /* public static IEnumerable<User> GetUsersWithPoems()
         {
             return new List<User>() {
