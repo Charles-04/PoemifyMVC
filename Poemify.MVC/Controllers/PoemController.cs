@@ -15,6 +15,7 @@ namespace Poemify.MVC.Controllers
 		public IActionResult Delete()
 		{
 			return View();
+			
 		}
 		public IActionResult Edit()
 		{
