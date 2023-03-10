@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace TodoList.DAL.Repository;
+namespace Poemify.DAL.Repository;
 
 public interface IUnitOfWork
 {

@@ -25,9 +25,8 @@ namespace Poemify.DAL.Entities
             model.Entity<User>()
                 .Property(p => p.Email)
                 .IsRequired();
-            model.Entity<Poem>()
-                .Property(p => p.Category)
-                .IsRequired(false);
+           
+
 			
 		}
        /* public static IEnumerable<User> GetUsersWithPoems()

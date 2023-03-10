@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TodoList.DAL.Repository
+namespace Poemify.DAL.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {

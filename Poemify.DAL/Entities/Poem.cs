@@ -12,11 +12,11 @@ namespace Poemify.DAL.Entities
     internal class Poem : BaseEntity
     {
         [Required]
-        public string Name { get; set; }
+        public string Title { get; set; }
         [Required]
         public string Body { get; set; }
         
-        public Category Category { get; set; }
+        public Category Category { get; set; } = Category.Sad;
         public int Likes { get; set; }
       
     }
