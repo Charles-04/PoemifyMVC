@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Poemify.BLL.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Poemify.BLL.Implementations
 {
@@ -26,22 +27,54 @@ namespace Poemify.BLL.Implementations
 			this._userRepo = _unitOfWork.GetRepository<User>();
 			
         }
-		public (bool isCreated, string messsage) CreatePoemAsync(CreateAndUpdatePoemViewModel model)
+		public async Task<(bool isCreated, string messsage)> CreateAndUpdatePoemAsync(CreateAndUpdatePoemViewModel model)
+		{
+			User user = await _userRepo.GetSingleByAsync(u => u.Id == model.UserId,include: u => u.Include(p => p.Poems), tracking : true);
+			if (user == null)
+			{
+				return (false, $"User with Id {model.UserId} was not found");
+			}
+			var poem = user.Poems.SingleOrDefault(p => p.Id == model.Id);
+			if (poem != null)
+			{
+				_mapper.Map(model, poem);
+                await _unitOfWork.SaveChangesAsync();
+                return (true, "Update Successful!");
+            }
+
+            var newPoem = _mapper.Map<Poem>(model);
+
+            user.Poems.Add(newPoem);
+
+            var rowChanges = await _unitOfWork.SaveChangesAsync();
+
+            return rowChanges > 0 ? (true, $"Poem: {model.Title} was successfully created!") : (false, "Failed To save changes!");
+        }
+
+		public async Task<(bool isDeleted, string messsage)> DeletePoemAsync(int userId, int poemId)
+		{
+			User user = await _userRepo.GetSingleByAsync(u => u.Id == userId, include: u => u.Include(p => p.Poems), tracking: true);
+			if (user == null)
+			{
+				return (false, $"User with Id {userId} was not found");
+			}
+            var poem = user.Poems.SingleOrDefault(p => p.Id == poemId);
+
+            if (poem == null)
+			{
+                return (false, $"Poem with Id {poemId} was not found");
+            }
+			user.Poems.Remove(poem);
+            var rowChanges = await _unitOfWork.SaveChangesAsync();
+
+            return rowChanges > 0 ? (true, $"Poem: {poem.Title} was successfully Deleted!") : (false, "Failed To save changes!");
+        }
+		public Task<(bool isUpdated, string messsage)> UpdatePoemAsync(int userId, int poemId)
 		{
 			throw new NotImplementedException();
 		}
 
-		public (bool isDeleted, string messsage) DeletePoemAsync(int userId, int poemId)
-		{
-			throw new NotImplementedException();
-		}
-
-		public (bool isUpdated, string messsage) UpdatePoemAsync(int userId, int poemId)
-		{
-			throw new NotImplementedException();
-		}
-
-		public (bool isViewed, string messsage) ViewPoemAsync(int userId, int poemId)
+		public Task<(bool isViewed, string messsage)> ViewPoemAsync(int userId, int poemId)
 		{
 			throw new NotImplementedException();
 		}
