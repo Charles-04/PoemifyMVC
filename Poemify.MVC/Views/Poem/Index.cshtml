@@ -1,12 +1,156 @@
 ﻿@{
 	ViewData["Title"] = "Poems";
 }
+@model Poemify.BLL.Models.CreateAndUpdatePoemViewModel
+@using Poemify.DAL.Enums
+@if (@TempData["SuccessMsg"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Success!</strong> @TempData["SuccessMsg"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
 
-<h3 class="text-primary">Poems</h3>
-<ol>
-	<li title="Open" class="cursor-pointer" id="red">Spring</li>
-	<li title="Open">Jade Empress</li>
-	<li title="Open">Disconsolate's Hymn</li>
-	<li title="Open">Dark Horse</li>
-	<li title="Open">Independence Of A Giant</li>
-</ol>
+
+@if (@TempData["ErrMsg"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> @TempData["ErrMsg"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+@if (@ViewBag.ErrMsg != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> @ViewBag.ErrMsg
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="header">
+    
+       
+       
+    
+  @*  <div id="modal" class="modal fade text-center">
+    <div class="modal-dialog">
+      <div class="modal-content">
+                <div class="modal-content">
+                    <div class="alert-danger" asp-validation-summary="@ValidationSummary.All"></div>
+                    <div>
+                        <div class="align-content-center mx-auto">
+                            <h3 class="text-primary">Add New Poem</h3>
+                        </div>
+                        <form class="col-7" asp-controller="Poem" asp-action="Save">
+                            <div class="mb-3">
+                                <label asp-for="@Model.Title" class="form-label"></label>
+                                <input class="form-control" asp-for="@Model.Title">
+                                <span asp-validation-for="Title"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="@Model.UserId" class="form-label"></label>
+                                <input class="form-control" asp-for="@Model.UserId">
+                                <span asp-validation-for="UserId"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label asp-for="@Model.Category" class="form-label"></label>
+                                <select class="form-select" aria-label="Default select example" asp-for="@Model.Category" asp-items="Html.GetEnumSelectList <Category>()">
+                                    <option selected="" value="">Select Poem Category</option>
+
+                                </select>
+
+                            </div>
+                            <div class="form-floating ">
+                                <textarea class="form-control col-7 h-50" placeholder="Write Your Thoughts" asp-for="@Model.Body"></textarea>
+                                <label asp-for="@Model.Body">Body</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    </div>
+                </div>
+      </div>
+    </div>
+  </div>*@
+    <div id="theModal" class="modal fade text-center">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+  <section id="blog" class="mt-4">
+        <div class="container">
+            <a type="button" class="btn btn-outline-primary align-self-end li-modal" href="/Poem/New" >
+                <i class="ti-plus"></i>
+            </a>
+            <h6 class="section-subtitle text-center">News Feeds</h6>
+            <h6 class="section-title mb-6 text-center">Featured Poems</h6>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="card blog-post my-4 my-sm-5 my-md-0">
+                        <img src="assets/imgs/blog-1.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Creative studio Landing page">
+                        <div class="card-body">
+                            <div class="details mb-3">
+                                <a href="javascript:void(0)"><i class="ti-comments"></i> 123</a>
+                                <a href="javascript:void(0)"><i class="ti-eye"></i> 123</a>
+                            </div>
+                            <h5 class="card-title">Possimus aliquam veniam</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae laudantium dolor nisi obcaecati, non laboriosam asperiores doloremque tempora repellendus iure!</p>
+                            <a href="javascript:void(0)" class="d-block mt-3">Read More...</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card blog-post my-4 my-sm-5 my-md-0">
+                        <img src="assets/imgs/blog-2.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Creative studio Landing page">
+                        <div class="card-body">
+                            <div class="details mb-3">
+                                <a href="javascript:void(0)"><i class="ti-comments"></i> 434</a>
+                                <a href="javascript:void(0)"><i class="ti-eye"></i> 987</a>
+                            </div>
+                            <h5 class="card-title">Repudiandae laudantium</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae laudantium dolor nisi obcaecati, non laboriosam asperiores doloremque tempora repellendus iure!</p>
+                            <a href="javascript:void(0)" class="d-block mt-3">Read More...</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card blog-post my-4 my-sm-5 my-md-0">
+                        <img src="assets/imgs/blog-3.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, Creative studio Landing page">
+                        <div class="card-body">
+                            <div class="details mb-3">
+                                <a href="javascript:void(0)"><i class="ti-comments"></i> 164</a>
+                                <a href="javascript:void(0)"><i class="ti-eye"></i> 425</a>
+                            </div>
+                            <h5 class="card-title">Laboriosam asperiores</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae laudantium dolor nisi obcaecati, non laboriosam asperiores doloremque tempora repellendus iure!</p>
+                            <a href="javascript:void(0)" class="d-block mt-3">Read More...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
+<!-- core  -->
+<script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+<script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+<!-- bootstrap affix -->
+<script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+
+<!-- Creative Studio js -->
+<script src="assets/js/creative-studio.js"></script>
+    <script>
+    $('.li-modal').on('click', function(e){
+      e.preventDefault();
+      $('#theModal').modal('show').find('.modal-content').load($(this).attr('href'));
+    });
+  </script>
+@section Scripts
+    {
+    @{
+        Html.RenderPartial("_ValidationScriptsPartial");
+    }
+    ;
+}
