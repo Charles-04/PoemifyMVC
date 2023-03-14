@@ -1,48 +1,43 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Poemify.DAL.Entities;
 
-namespace Poemify.DAL.Entities
+namespace Poemify.DAL.DBSeed
 {
-    public class PoemifyDbContext : DbContext
+    public class Seed
     {
-        public PoemifyDbContext(DbContextOptions<PoemifyDbContext> options):base(options)
+        public static async Task EnsurePopulatedAsync(IApplicationBuilder app)
         {
+            PoemifyDbContext context = app.ApplicationServices.CreateScope().ServiceProvider
+                .GetRequiredService<PoemifyDbContext>();
+
+            if (!await context.Users.AnyAsync())
+            {
+                await context.Users.AddRangeAsync(UsersWithPoems());
+                await context.SaveChangesAsync();
+            }
+
 
         }
-       public DbSet<User> Users { get; set; }
-       public DbSet<Poem> Poems { get; set; }
-        
-      protected override void OnModelCreating(ModelBuilder model)
+        public static IEnumerable<User> UsersWithPoems()
         {
-            model.Entity<User>()
-                .Property(p => p.FullName)
-                .HasMaxLength(50)
-                .IsRequired();
-            model.Entity<User>()
-                .Property(p => p.Email)
-                .IsRequired();
-           
-
-			
-		}
-       /* public static IEnumerable<User> GetUsersWithPoems()
-        {
-            return new List<User>() {
-             new User{
-                 FullName = "Odogwu Cee",
-                 Email = "Odogwu@mail.com",
-                 Password= "P@ssword",
-                 Poems = new List<Poem> ()
-                 {
-                     new Poem
-                     {
-                         Id= 1,
-                         Name = "Spring",
-                         Body = @"
+            return new List<User>()
+            {
+                new User()
+                {
+                    FullName = "Chibueze Charles",
+                    Password = "password",
+                    Email = "charles@mail.com",
+                    IsPoet = true,
+                    CreatedAt = DateTime.Now,
+                    Poems = new List<Poem>()
+                    {
+                        new Poem
+                        {
+                            
+                            Title = "Spring",
+                            Body = @"
 It's not yet spring
 Yet I anticipate your call
 Waiting for my phone to ring
@@ -67,12 +62,12 @@ To my soul of gloom
                                                            ~ C.Charles C C
 "
 
-                     },
-                      new Poem
-                     {
-                         Id = 2,
-                         Name = "Time",
-                         Body = @"
+                        },
+                        new Poem
+                        {
+                            
+                            Title = "Time",
+                            Body = @"
 Seemingly slow, yet passes quickly
 The bane of all things ephemeral
 The ultimate test of the universe
@@ -96,11 +91,14 @@ A priceless treasure, unappreciated
                                         ~ C.Charles C C
 "
 
-                     },
+                        }
 
-                 }
-             },
-            new User{
+                    }
+
+
+
+                },
+                new User{
                  FullName = "Cee Cee Cee",
                  Email = "CeeCee@mail.com",
                  Password= "P@ssw0rd",
@@ -108,8 +106,8 @@ A priceless treasure, unappreciated
                  {
                      new Poem
                      {
-                         Id = 1,
-                         Name = "Farewell?",
+                         
+                         Title = "Farewell?",
                          Body = @"
 The nights turned to days
 The connection had strains
@@ -133,8 +131,7 @@ Isn't far from a reality
                      },
                       new Poem
                      {
-                         Id = 1,
-                         Name = "Te Amor",
+                         Title = "Te Amor",
                          Body = @"
 Some people stay for a while, others forever
 Every day, I pray you're the latter 
@@ -168,8 +165,7 @@ Makes the stars jealous
                      },
 
                  }
-             }
-            };
-        }*/
+            } };
+        }
     }
 }

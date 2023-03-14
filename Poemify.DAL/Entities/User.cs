@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Poemify.DAL.Entities
 {
-    internal class User : BaseEntity
+    public class User : BaseEntity
     {
         [Required]
         public string FullName { get; set; }

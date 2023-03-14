@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Poemify.DAL.Entities
 {
-    internal class Poem : BaseEntity
+    public class Poem : BaseEntity
     {
         [Required]
         public string Title { get; set; }
@@ -18,6 +18,10 @@ namespace Poemify.DAL.Entities
         
         public Category Category { get; set; } = Category.Sad;
         public int Likes { get; set; }
+
+        public int UserId { get; set; }
+        public User User { get; set; }
+
       
     }
 }
