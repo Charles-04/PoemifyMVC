@@ -9,6 +9,6 @@ namespace Poemify.BLL.Interfaces
 	internal interface IUserService
 	{
 		(bool created, string messsage) CreateUserAsync();
-		(bool created, string messsage) ViewPoetsAsync(int userId, int poemId);
+		(bool created, string messsage) ViewPoetsAsync(int userId);
 	}
 }

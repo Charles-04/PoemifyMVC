@@ -1,11 +1,16 @@
 using Microsoft.EntityFrameworkCore;
 using Poemify.DAL.Entities;
+using Poemify.BLL.Implementations;
+using Poemify.BLL.Interfaces;
+using Poemify.DAL.Repository;
+using System.Reflection;
+using Poemify.DAL.DBSeed;
 
 namespace Poemify.MVC
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public async static Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +18,10 @@ namespace Poemify.MVC
             builder.Services.AddControllersWithViews();
             builder.Services.AddDbContext<PoemifyDbContext>(options => options.UseSqlServer(
                 builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddScoped< IPoemService, PoemService>();
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork<PoemifyDbContext>>();
 
+            builder.Services.AddAutoMapper(Assembly.Load("Poemify.BLL"));
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -35,7 +43,8 @@ namespace Poemify.MVC
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
-            app.Run();
+            await Seed.EnsurePopulatedAsync(app);
+            await app.RunAsync();
         }
     }
 }

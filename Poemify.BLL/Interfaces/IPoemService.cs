@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Poemify.BLL.Interfaces
 {
-	internal interface IPoemService
+	public interface IPoemService
 	{
-		(bool isCreated, string messsage) CreatePoemAsync(CreateAndUpdatePoemViewModel model);
-		(bool isViewed, string messsage) ViewPoemAsync(int userId, int poemId);
-		(bool isUpdated, string messsage) UpdatePoemAsync(int userId, int poemId);
-		(bool isDeleted, string messsage) DeletePoemAsync(int userId, int poemId);
+		Task<(bool isCreated, string messsage)> CreateAndUpdatePoemAsync(CreateAndUpdatePoemViewModel model);
+		Task<(bool isViewed, string messsage)> ViewPoemAsync(int userId, int poemId);
+		Task<(bool isUpdated, string messsage)> UpdatePoemAsync(int userId, int poemId);
+		Task<(bool isDeleted, string messsage)> DeletePoemAsync(int userId, int poemId);
 	}
 }

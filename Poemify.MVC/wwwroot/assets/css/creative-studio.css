@@ -165,24 +165,24 @@ a {
   background-color: transparent;
 }
 
-a:hover {
-  color: #d4002c;
-  text-decoration: underline;
-}
 
-a:not([href]):not([tabindex]) {
-  color: inherit;
-  text-decoration: none;
-}
+    a:hover {
+        color: #d4002c;
+        text-decoration: underline;
+    }
+  /*  a:not([href]):not([tabindex]) {
+        color: #d4002c;
+        text-decoration: none;
+    }*//*
 
 a:not([href]):not([tabindex]):hover, a:not([href]):not([tabindex]):focus {
   color: inherit;
   text-decoration: none;
-}
+}*/
 
-a:not([href]):not([tabindex]):focus {
+/*a:not([href]):not([tabindex]):focus {
   outline: 0;
-}
+}*/
 
 pre,
 code,
@@ -11786,6 +11786,7 @@ pre .code {
   min-height: 600px;
   background: url(../imgs/header.jpg) no-repeat center center fixed;
   background-size: cover;
+  width:100vw;
 }
 
 .header .overlay {
