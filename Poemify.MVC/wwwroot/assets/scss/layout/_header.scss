@@ -5,11 +5,12 @@
     background-size: cover;
 
     .overlay {
-        position: absolute;
+        /*position: absolute;
         left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
+        top: 0;*/
+        
+        width: 100vw;
+        height: 100vh;
         background: rgba($black,.45);
         color: $white;
         display: flex;
@@ -24,8 +25,8 @@
         }
 
         .title {
-            font-size: calc(40px + (90 - 40) * ((100vw - 320px) / (1200 - 320)));   
-            margin-bottom: 40px;        
+            font-size: calc(40px + (90 - 40) * ((100vw - 320px) / (1200 - 320)));
+            margin-bottom: 40px;
         }
     }
 
@@ -43,7 +44,6 @@
         font-weight: bold;
         opacity: .8;
     }
-
     // header mini
     &-mini {
         min-height: 24rem;
