@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Poemify.BLL.Models;
+using Poemify.DAL.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace Poemify.BLL.Interfaces
 {
-	internal interface IUserService
+	public interface IUserService
 	{
-		(bool created, string messsage) CreateUserAsync();
-		(bool created, string messsage) ViewPoetsAsync(int userId);
-	}
+		Task<(bool created, string messsage) >CreateUserAsync(CreateUserViewModel model);
+		Task<IEnumerable<User>> ViewPoetsAsync();
+
+    }
 }
