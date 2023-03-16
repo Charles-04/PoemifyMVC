@@ -1,0 +1,82 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Poemify.BLL.Models.CreateUserViewModel
+
+
+@if (@ViewBag.ErrMsg != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>Error!</strong> @ViewBag.ErrMsg
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+
+<div class="alert-danger" asp-validation-summary="@ValidationSummary.All"></div>
+
+
+
+<div class="modal-content">
+    <div>
+        <div class="align-content-center mx-auto">
+            <h3 class="text-primary">Sign Up</h3>
+        </div>
+        <form class=" align-content-center col-12" asp-controller="Users" asp-action="Save">
+            <div class="mb-3" style="width:inherit;">
+                <label asp-for="@Model.FullName" class="form-label"></label>
+                <input class="form-control " style="width:inherit;" asp-for="@Model.FullName">
+                <span asp-validation-for="FullName"></span>
+            </div>
+            <div class="mb-3" style="width:inherit;">
+                <label asp-for="@Model.Email" class="form-label"></label>
+                <input class="form-control" style="width:inherit;" type="email" asp-for="@Model.Email">
+                <span asp-validation-for="Email"></span>
+            </div>
+            <div class="mb-3" style="width:inherit;">
+                <label asp-for="@Model.Password" class="form-label"></label>
+                <input class="form-control" type="password" style="width:inherit;" asp-for="@Model.Password">
+                <span asp-validation-for="Password"></span>
+            </div>
+            <div class="mb-3" style="width:inherit;">
+                <label asp-for="@Model.Title" class="form-label"></label>
+                <input class="form-control" style="width:inherit;" asp-for="@Model.Title">
+                <span asp-validation-for="Title"></span>
+            </div>
+            <div class="mb-3" style="width:inherit;">
+                        <label asp-for="@Model.IsPoet" class="form-label"></label>
+                <select class="form-select " style="width:inherit;" aria-label="Default select example" asp-for="@Model.IsPoet">
+                    <option selected="" value="">Select Poem Category</option>
+                    <option selected="" value="false">No</option>
+                    <option selected="" value="true">Yes</option>
+
+                </select>
+            </div>
+            <div class="form-floating " style="width:inherit;">
+                <textarea class="form-control col-12 h-50" style="width:inherit;" placeholder="Write Your Thoughts" asp-for="@Model.Bio"></textarea>
+                <label asp-for="@Model.Bio">Body</label>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:inherit;">Submit</button>
+        </form>
+    </div>
+</div>
+
+<!-- core  -->
+<script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+<script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+<!-- bootstrap affix -->
+<script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+
+<!-- Creative Studio js -->
+<script src="assets/js/creative-studio.js"></script>
+
+@section Scripts
+    {
+    @{
+        Html.RenderPartial("_ValidationScriptsPartial");
+    }
+    ;
+}
