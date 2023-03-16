@@ -3,7 +3,7 @@
 *@
 @{
     ViewBag.Title = "title";
-    Layout = "_Layout";
+    
 }
 @model Poemify.BLL.Models.CreateAndUpdatePoemViewModel
 @using Poemify.DAL.Enums
@@ -26,30 +26,30 @@
                 <div class="align-content-center mx-auto">
                     <h3 class="text-primary">Add New Poem</h3>
                 </div>
-                <form class="col-7" asp-controller="Poem" asp-action="Save">
-                    <div class="mb-3">
+                <form class=" align-content-center col-12" asp-controller="Poem" asp-action="Save">
+            <div class="mb-3" style="width:inherit;">
                         <label asp-for="@Model.Title" class="form-label"></label>
-                        <input class="form-control" asp-for="@Model.Title">
+                <input class="form-control " style="width:inherit;" asp-for="@Model.Title">
                         <span asp-validation-for="Title"></span>
                     </div>
-                    <div class="mb-3">
+            <div class="mb-3" style="width:inherit;">
                         <label asp-for="@Model.UserId" class="form-label"></label>
-                        <input class="form-control" asp-for="@Model.UserId">
+                <input class="form-control" style="width:inherit;" asp-for="@Model.UserId">
                         <span asp-validation-for="UserId"></span>
                     </div>
-                    <div class="mb-3">
+            <div class="mb-3" style="width:inherit;">
                         <label asp-for="@Model.Category" class="form-label"></label>
-                        <select class="form-select" aria-label="Default select example" asp-for="@Model.Category" asp-items="Html.GetEnumSelectList <Category>()">
+                <select class="form-select " style="width:inherit;" aria-label="Default select example" asp-for="@Model.Category" asp-items="Html.GetEnumSelectList <Category>()">
                             <option selected="" value="">Select Poem Category</option>
 
                         </select>
 
                     </div>
-                    <div class="form-floating ">
-                        <textarea class="form-control col-7 h-50" placeholder="Write Your Thoughts" asp-for="@Model.Body"></textarea>
+            <div class="form-floating " style="width:inherit;">
+                        <textarea class="form-control col-12 h-50"style="width:inherit;" placeholder="Write Your Thoughts" asp-for="@Model.Body"></textarea>
                         <label asp-for="@Model.Body">Body</label>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" style="width:inherit;">Submit</button>
                 </form>
             </div>
         </div>

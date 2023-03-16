@@ -27,50 +27,7 @@
     </div>
 }
 
-<div class="header">
-    
-       
-       
-    
-  @*  <div id="modal" class="modal fade text-center">
-    <div class="modal-dialog">
-      <div class="modal-content">
-                <div class="modal-content">
-                    <div class="alert-danger" asp-validation-summary="@ValidationSummary.All"></div>
-                    <div>
-                        <div class="align-content-center mx-auto">
-                            <h3 class="text-primary">Add New Poem</h3>
-                        </div>
-                        <form class="col-7" asp-controller="Poem" asp-action="Save">
-                            <div class="mb-3">
-                                <label asp-for="@Model.Title" class="form-label"></label>
-                                <input class="form-control" asp-for="@Model.Title">
-                                <span asp-validation-for="Title"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label asp-for="@Model.UserId" class="form-label"></label>
-                                <input class="form-control" asp-for="@Model.UserId">
-                                <span asp-validation-for="UserId"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label asp-for="@Model.Category" class="form-label"></label>
-                                <select class="form-select" aria-label="Default select example" asp-for="@Model.Category" asp-items="Html.GetEnumSelectList <Category>()">
-                                    <option selected="" value="">Select Poem Category</option>
-
-                                </select>
-
-                            </div>
-                            <div class="form-floating ">
-                                <textarea class="form-control col-7 h-50" placeholder="Write Your Thoughts" asp-for="@Model.Body"></textarea>
-                                <label asp-for="@Model.Body">Body</label>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                        </form>
-                    </div>
-                </div>
-      </div>
-    </div>
-  </div>*@
+<div class="header  overflow-x-hidden" style="width:100vw;margin-left:-9vw;margin-top:-4vh;">
     <div id="theModal" class="modal fade text-center">
         <div class="modal-dialog">
             <div class="modal-content">
