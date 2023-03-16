@@ -16,9 +16,20 @@ namespace Poemify.MVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddDbContext<PoemifyDbContext>(options => options.UseSqlServer(
-                builder.Configuration.GetConnectionString("DefaultConnection")));
+            builder.Services.AddDbContext<PoemifyDbContext>(options => {
+                options.UseSqlServer(
+                    builder.Configuration.GetConnectionString("DefaultConnection"),
+                    sqlServerOptionsAction: sqlOptions =>
+                    {
+                        sqlOptions.EnableRetryOnFailure(
+                        maxRetryCount: 10,
+                        maxRetryDelay: TimeSpan.FromSeconds(30),
+                        errorNumbersToAdd: null);
+                    });
+
+            }) ;
             builder.Services.AddScoped< IPoemService, PoemService>();
+            builder.Services.AddScoped<IUserService, UserService>();
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork<PoemifyDbContext>>();
 
             builder.Services.AddAutoMapper(Assembly.Load("Poemify.BLL"));
