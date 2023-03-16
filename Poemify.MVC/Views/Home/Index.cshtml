@@ -9,11 +9,19 @@
             <h1 class="title">Poemify</h1>
             <div class="buttons text-center">
                 <a asp-controller="Poem" asp-action="Index" class="btn btn-primary rounded w-lg btn-lg my-1">Our Poems</a>
-                <a href="#contact" class="btn btn-outline-light rounded w-lg btn-lg my-1">Sign up</a>
+                <a href="/Users/New" class="btn btn-outline-light rounded w-lg btn-lg my-1 li-modal">Sign up</a>
             </div>
         </div>
     </header>
     <!-- End Of Page Header -->
+    <!-- Modal-->
+<div id="theModal" class="modal fade text-center">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+</div>
+<!-- End of Modal-->
     <!-- Box -->
     <div class="box text-center">
         <div class="box-item">
@@ -155,96 +163,7 @@
     </section>
     <!-- End of portfolio section -->
     <!-- Team Section -->
-    <section id="team">
-        <div class="container">
-            <h6 class="section-subtitle text-center">Meet With</h6>
-            <h6 class="section-title mb-5 text-center">Our Top Poets</h6>
-            <div class="row">
-                <div class="col-sm-6 col-md-4">
-                    <div class="card text-center mb-4">
-                        <img class="card-img-top inset" src="assets/imgs/avatar.jpg">
-                        <div class="card-body">
-                            <h6 class="small text-primary font-weight-bold">FOUNDER</h6>
-                            <h5 class="card-title">Chibueze Charles</h5>
-                            <p>Charles is a nature lover. Most of his poems are about life</p>
-                            <div class="socials">
-                                <a href="javascript:void(0)"><i class="ti-facebook"></i> </a>
-                                <a href="javascript:void(0)"><i class="ti-github"></i></a>
-                                <a href="javascript:void(0)"><i class="ti-dropbox"></i></a>
-                                <a href="javascript:void(0)"><i class="ti-twitter"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <div class="card text-center mb-4">
-                        <img class="card-img-top inset" src="assets/imgs/avatar-1.jpg">
-                        <div class="card-body">
-                            <h6 class="small text-primary font-weight-bold">Nature Poet</h6>
-                            <h5 class="card-title">Barbara Ross</h5>
-                            <p>Ross is a nature lover. She has 10 awards to her name.</p>
-                            <div class="socials">
-                                <a href="javascript:void(0)"><i class="ti-facebook"></i> </a>
-                                <a href="javascript:void(0)"><i class="ti-github"></i></a>
-                                <a href="javascript:void(0)"><i class="ti-dropbox"></i></a>
-                                <a href="javascript:void(0)"><i class="ti-twitter"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <div class="card text-center mb-4">
-                        <img class="card-img-top inset" src="assets/imgs/avatar-2.jpg">
-                        <div class="card-body">
-                            <h6 class="small text-primary font-weight-bold">Award winning poet '23 </h6>
-                            <h5 class="card-title">Karen Perry</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni quos esse tenetur illo qui, nostrum.</p>
-                            <div class="socials">
-                                <a href="javascript:void(0)"><i class="ti-facebook"></i> </a>
-                                <a href="javascript:void(0)"><i class="ti-github"></i></a>
-                                <a href="javascript:void(0)"><i class="ti-dropbox"></i></a>
-                                <a href="javascript:void(0)"><i class="ti-twitter"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <div class="card text-center mb-4">
-                        <img class="card-img-top inset" src="assets/imgs/avatar-3.jpg">
-                        <div class="card-body">
-                            <h6 class="small text-primary font-weight-bold">Creative Thinker '23</h6>
-                            <h5 class="card-title">Ashley Diaz</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni quos esse tenetur illo qui, nostrum.</p>
-                            <div class="socials">
-                                <a href="javascript:void(0)"><i class="ti-facebook"></i> </a>
-                                <a href="javascript:void(0)"><i class="ti-github"></i></a>
-                                <a href="javascript:void(0)"><i class="ti-dropbox"></i></a>
-                                <a href="javascript:void(0)"><i class="ti-twitter"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4">
-                    <div class="card text-center mb-4">
-                        <img class="card-img-top inset" src="assets/imgs/avatar-4.jpg">
-                        <div class="card-body">
-                            <h6 class="small text-primary font-weight-bold">Outstanding Poet '23</h6>
-                            <h5 class="card-title">Edward Harris</h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni quos esse tenetur illo qui, nostrum.</p>
-                            <div class="socials">
-                                <a href="javascript:void(0)"><i class="ti-facebook"></i> </a>
-                                <a href="javascript:void(0)"><i class="ti-github"></i></a>
-                                <a href="javascript:void(0)"><i class="ti-dropbox"></i></a>
-                                <a href="javascript:void(0)"><i class="ti-twitter"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-
-            </div>
-        </div>
-    </section>
+   
     <!-- End of Team Sectoin -->
     <!-- Fatcs Section -->
     <section class="has-bg-img bg-img-2">
@@ -410,6 +329,12 @@
             </div>
         </div>
     </section>
+<script>
+    $('.li-modal').on('click', function (e) {
+        e.preventDefault();
+        $('#theModal').modal('show').find('.modal-content').load($(this).attr('href'));
+    });
+</script>
 
     <!-- core  -->
     <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
