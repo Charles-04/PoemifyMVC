@@ -30,7 +30,8 @@ namespace Poemify.DAL.DBSeed
                     Password = "password",
                     Email = "charles@mail.com",
                     IsPoet = true,
-                    CreatedAt = DateTime.Now,
+                    Title = "Founder",
+                    Bio = "Meet Charles, a dynamic and passionate entrepreneur who is the founder and CEO of Poemify. With over a decade of experience in the industry, Charles has a proven track record of turning innovative and poets into their dream personalities.",
                     Poems = new List<Poem>()
                     {
                         new Poem
@@ -102,6 +103,8 @@ A priceless treasure, unappreciated
                  FullName = "Cee Cee Cee",
                  Email = "CeeCee@mail.com",
                  Password= "P@ssw0rd",
+                 Title = "Editor",
+                 Bio = $"Cee Cee , an experienced editor, has spent 13 years in the publishing industry. With a keen eye for detail and a passion for language, Cee Cee has helped numerous Poets craft their stories and ideas into compelling and impactful works.",
                  Poems = new List<Poem> ()
                  {
                      new Poem
